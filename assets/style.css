@@ -1,0 +1,310 @@
+:root {
+    /* Light Theme (Industrial / High Contrast) */
+    --bg-color: #f8f9fa;
+    --surface: #ffffff;
+    --text-main: #111827;
+    --text-muted: #6b7280;
+    --border-color: #111827; /* Hard borders instead of soft AI shadows */
+    
+    --primary: #f97316; /* Safety Orange */
+    --primary-hover: #ea580c;
+    --danger: #dc2626;
+    --danger-hover: #b91c1c;
+    --warning: #facc15;
+    --warning-text: #854d0e;
+    
+    --focus-ring: #f97316;
+    
+    --radius: 4px; /* Industrial, not pill-shaped */
+    --shadow: 4px 4px 0px rgba(17, 24, 39, 1); /* Brutalist/Hard shadow instead of soft */
+}
+
+[data-theme="dark"] {
+    --bg-color: #111827;
+    --surface: #1f2937;
+    --text-main: #f9fafb;
+    --text-muted: #9ca3af;
+    --border-color: #374151;
+    
+    --shadow: 4px 4px 0px rgba(0, 0, 0, 1);
+    --warning-text: #fef08a;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.5;
+    padding: 40px 20px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+}
+
+/* Accessibility Focus States (R-32) */
+:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    background-color: var(--text-main);
+    color: var(--bg-color);
+    text-decoration: none;
+    border: 2px solid var(--text-main);
+    border-radius: var(--radius);
+    cursor: pointer;
+    box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+    transition: transform 0.1s, box-shadow 0.1s;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    gap: 8px;
+}
+[data-theme="dark"] .btn {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: #111827;
+}
+
+.btn:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0px;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--text-main);
+    color: #111827;
+}
+[data-theme="dark"] .btn-primary {
+    border-color: var(--primary);
+}
+
+.btn-danger {
+    background-color: var(--danger);
+    color: white;
+    border-color: var(--danger);
+}
+.btn-warning {
+    background-color: var(--warning);
+    color: var(--warning-text);
+    border-color: var(--warning);
+}
+
+.theme-toggle {
+    background: transparent;
+    border: 2px solid var(--border-color);
+    color: var(--text-main);
+    padding: 8px;
+}
+
+/* Search Form */
+.search-form {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.search-form input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    background-color: var(--surface);
+    color: var(--text-main);
+}
+
+/* Products Grid */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.card {
+    background: var(--surface);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-badge {
+    display: inline-block;
+    background: var(--text-main);
+    color: var(--bg-color);
+    padding: 4px 8px;
+    border-radius: var(--radius);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    align-self: flex-start;
+    margin-bottom: 12px;
+}
+
+.card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.card-data {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    border-bottom: 1px dotted var(--border-color);
+    padding-bottom: 4px;
+}
+
+.card-data span.label {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.card-data span.value {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.card-actions {
+    margin-top: 24px;
+    display: flex;
+    gap: 8px;
+}
+.card-actions .btn {
+    flex: 1;
+}
+
+/* Rhythm Break: Out of stock styling */
+.card.out-of-stock {
+    background: var(--bg-color);
+    border-style: dashed;
+    box-shadow: none;
+    opacity: 0.75;
+}
+.card.out-of-stock h3 {
+    text-decoration: line-through;
+    color: var(--text-muted);
+}
+.card.out-of-stock .card-badge {
+    background: var(--danger);
+    color: white;
+}
+
+/* Forms */
+.form-container {
+    background: var(--surface);
+    padding: 32px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius);
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: inherit;
+}
+
+/* Alerts */
+.alert {
+    padding: 16px;
+    margin-bottom: 24px;
+    border: 2px solid;
+    font-weight: 600;
+}
+.alert-error {
+    background-color: rgba(220, 38, 38, 0.1);
+    border-color: var(--danger);
+    color: var(--danger);
+}
+.alert-success {
+    background-color: rgba(22, 163, 74, 0.1);
+    border-color: #16a34a;
+    color: #16a34a;
+}
+
+/* Pagination */
+.pagination {
+    margin-top: 40px;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+.pagination .btn {
+    box-shadow: none;
+}
+.pagination .btn-active {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: #111827;
+}
+
+/* Utilities */
+.header-actions {
+    display: flex;
+    gap: 12px;
+}
